@@ -1,4 +1,8 @@
 
+  
+ 
+  <app-phone-form (addPhone)="onAddPhone($event)"></app-phone-form>
+  <app-phone-list [phones]="phones"></app-phone-list>
+  <app-navbar></app-navbar>
+<router-outlet></router-outlet>
 
-<app-phone-form (addPhone)="onAddPhone($event)"></app-phone-form>
-<app-phone-list [phones]="phones"></app-phone-list>

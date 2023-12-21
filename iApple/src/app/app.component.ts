@@ -1,7 +1,8 @@
-// app.component.ts
+
 
 import { Component } from '@angular/core';
 import { Phone } from './phone';
+
 
 @Component({
   selector: 'app-root',

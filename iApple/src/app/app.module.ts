@@ -4,17 +4,34 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PhoneListComponent } from './phone-list/phone-list.component';
 import { PhoneFormComponent } from './phone-form/phone-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PreporukaComponent } from './preporuka/preporuka.component';
+import { ONamaComponent } from './o-nama/o-nama.component';
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PhoneListComponent,
-    PhoneFormComponent
+    PhoneFormComponent,
+    NavbarComponent,
+    PreporukaComponent,
+    ONamaComponent,
+    
+    
+
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
+   
   ],
+
+    
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

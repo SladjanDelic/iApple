@@ -1,21 +1,18 @@
-
-
 <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Model</th>
-          <th>Cijena</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let phone of phones">
-          <td>{{ phone.id }}</td>
-          <td>{{ phone.model }}</td>
-          <td>{{ phone.price | currency: 'USD':'symbol':'1.2-2' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Model</th>
+        <th>Cijena</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let phone of phones">
+        <td>{{ phone.id }}</td>
+        <td>{{ phone.model }}</td>
+        <td>{{ phone.price | currency: 'USD':'symbol':'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

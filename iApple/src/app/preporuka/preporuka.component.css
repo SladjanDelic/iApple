@@ -1,0 +1,31 @@
+.container {
+    max-width: 2000px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .col-md-6 {
+    width: 48%;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  strong {
+    color: #007bff; 
+  }
+  

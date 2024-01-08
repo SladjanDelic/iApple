@@ -1,5 +1,3 @@
-
-
 import { Component, Input } from '@angular/core';
 import { Phone } from '../phone';
 

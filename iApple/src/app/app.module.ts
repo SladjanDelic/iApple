@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PreporukaComponent } from './preporuka/preporuka.component';
 import { ONamaComponent } from './o-nama/o-nama.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     PreporukaComponent,
     ONamaComponent,
+
     
     
 
@@ -26,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
    
   ],
 

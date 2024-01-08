@@ -1,9 +1,37 @@
-<form (ngSubmit)="onSubmit()">
-    <label for="model">Model:</label>
-    <input type="text" id="model" [(ngModel)]="newPhone.model" name="model" required>
-  
-    <label for="price">Cijena:</label>
-    <input type="number" id="price" [(ngModel)]="newPhone.price" name="price" required>
-  
-    <button type="submit">Dodaj telefon</button>
-  </form>
+<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+  <label for="model">Model:</label>
+  <input type="text" id="model" formControlName="model">
+  <div *ngIf="phoneForm.get('model')?.hasError('required')" class="error-message">
+    Model ne može biti prazan.
+  </div>
+
+  <label for="price">Cijena:</label>
+  <input type="number" id="price" formControlName="price">
+  <div *ngIf="phoneForm.get('price')?.hasError('required')" class="error-message">
+    Model ne može biti prazan.>
+    Cijena ne može biti prazna.
+  </div>
+  <div *ngIf="phoneForm.get('price')?.hasError('nonZero')" class="error-message">
+    Model ne može biti prazan.
+    Cijena ne može biti 0.
+  </div>
+  <label>Dodatne usluge:</label>
+  <div>
+    <label><input type="checkbox" formControlName="extraRAM"> 8 GB RAM</label>
+    <label><input type="checkbox" formControlName="chargerIncluded"> Uključuje Punjač</label>
+    <label><input type="checkbox" formControlName="headphonesIncluded"> Uključuje Slušalice</label>
+  </div>
+
+
+  <div *ngIf="phoneForm.value.extraRAM">
+    <p>Vaš račun je uvećan za 50 dolara zbog dodatnih 8 GB RAM-a.</p>
+  </div>
+  <div *ngIf="phoneForm.value.chargerIncluded">
+    <p>Vaš račun je uvećan za 20 dolara zbog uključenog punjača.</p>
+  </div>
+  <div *ngIf="phoneForm.value.headphonesIncluded">
+    <p>Vaš račun je uvećan za 30 dolara zbog uključenih slušalica.</p>
+  </div>
+
+  <button type="submit">Dodaj telefon</button>
+</form>

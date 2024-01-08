@@ -1,7 +1,8 @@
-export class Phone{
-    constructor(
-        public id: number,
-        public model: string,
-        public price: number
-    ){}
+// phone.ts
+export class Phone {
+  constructor(
+    public model: string,
+    public price: number,
+    public id?: number
+  ) {}
 }

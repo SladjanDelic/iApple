@@ -8,12 +8,18 @@
   <label for="price">Cijena:</label>
   <input type="number" id="price" formControlName="price">
   <div *ngIf="phoneForm.get('price')?.hasError('required')" class="error-message">
-    Model ne može biti prazan.>
     Cijena ne može biti prazna.
   </div>
   <div *ngIf="phoneForm.get('price')?.hasError('nonZero')" class="error-message">
-    Model ne može biti prazan.
     Cijena ne može biti 0.
+  </div>
+  <label for="numberOfPhones">Broj telefona:</label>
+  <input type="number" id="numberOfPhones" formControlName="numberOfPhones">
+  <div *ngIf="phoneForm.get('numberOfPhones')?.hasError('required')" class="error-message">
+    Unesite broj telefona.
+  </div>
+  <div *ngIf="phoneForm.get('numberOfPhones')?.hasError('nonZero')" class="error-message">
+    Broj telefona ne može biti 0.
   </div>
   <label>Dodatne usluge:</label>
   <div>

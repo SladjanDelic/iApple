@@ -1,11 +1,14 @@
+
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Phone } from '../phone';
+import { MobileService } from '../mobile.service';
 
 @Component({
   selector: 'app-phone-form',
   templateUrl: './phone-form.component.html',
-  styleUrls: ['./phone-form.component.css']
+  styleUrls: ['./phone-form.component.css'],
+  providers: [MobileService],
 })
 export class PhoneFormComponent {
   phoneForm: FormGroup;
@@ -14,10 +17,11 @@ export class PhoneFormComponent {
 
   @Output() addPhone = new EventEmitter<Phone>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private mobileService: MobileService) {
     this.phoneForm = this.fb.group({
       model: ['', Validators.required],
       price: [0, [Validators.required, this.nonZeroValidator]],
+      numberOfPhones: [0, [Validators.required, this.nonZeroValidator]],
       extraRAM: [false],
       chargerIncluded: [false],
       headphonesIncluded: [false],
@@ -34,27 +38,26 @@ export class PhoneFormComponent {
     if (this.phoneForm.valid) {
       this.priceIncrease = 0;
 
-      if (this.phoneForm.value.extraRAM) {
-        this.priceIncrease += 50;
-        console.log('Dodatnih 50 dolara za 8 GB RAM-a.');
-      }
-      if (this.phoneForm.value.chargerIncluded) {
-        this.priceIncrease += 20;
-        console.log('Dodatnih 20 dolara za uključen punjač.');
-      }
-      if (this.phoneForm.value.headphonesIncluded) {
-        this.priceIncrease += 30;
-        console.log('Dodatnih 30 dolara za uključene slušalice.');
-      }
+      
+      const basePhonePrice = this.phoneForm.value.price;
+      this.mobileService.setBasePrice(basePhonePrice);
 
-      if (this.priceIncrease > 0) {
-        console.log('Ukupna cijena je uvećana za:', this.priceIncrease, 'dolara.');
-      }
+      
+      const numberOfPhones = this.phoneForm.value.numberOfPhones;
+      const totalPrice = this.mobileService.calculateTotalPrice(
+        numberOfPhones,
+        this.phoneForm.value.extraRAM,
+        this.phoneForm.value.chargerIncluded,
+        this.phoneForm.value.headphonesIncluded
+      );
+
+      console.log('Ukupna cijena je uvećana za:', this.priceIncrease, 'dolara.');
+      console.log('Ukupna cijena za', numberOfPhones, 'telefona:', totalPrice, 'dolara.');
 
       const newPhone: Phone = {
         id: this.currentId++,
         model: this.phoneForm.value.model,
-        price: this.phoneForm.value.price + this.priceIncrease,
+        price: totalPrice,
       };
 
       this.addPhone.emit(newPhone);
